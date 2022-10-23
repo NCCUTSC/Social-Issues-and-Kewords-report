@@ -40,28 +40,14 @@ for (k in 2:length(new_data)){
 }
 
 writeLines(year_108data,"108")
-#=================================
-year_99data<-readLines("C:/Users/user/Desktop/R/txt檔/社會期刊/99.txt")
-year_100data<-readLines("C:/Users/user/Desktop/R/txt檔/社會期刊/100.txt")
-year_101data<-readLines("C:/Users/user/Desktop/R/txt檔/社會期刊/101.txt")
-year_102data<-readLines("C:/Users/user/Desktop/R/txt檔/社會期刊/102.txt")
-year_103data<-readLines("C:/Users/user/Desktop/R/txt檔/社會期刊/103.txt")
-year_104data<-readLines("C:/Users/user/Desktop/R/txt檔/社會期刊/104.txt")
-year_105data<-readLines("C:/Users/user/Desktop/R/txt檔/社會期刊/105.txt")
-year_106data<-readLines("C:/Users/user/Desktop/R/txt檔/社會期刊/106.txt")
-year_107data<-readLines("C:/Users/user/Desktop/R/txt檔/社會期刊/107.txt")
-year_108data<-readLines("C:/Users/user/Desktop/R/txt檔/社會期刊/108.txt")
-year_109data<-readLines("C:/Users/user/Desktop/R/txt檔/社會期刊/109.txt")
-year_110data<-readLines("C:/Users/user/Desktop/R/txt檔/社會期刊/110.txt")
-
-sobj.doc<-c(year_99data,year_100data,year_101data,year_102data
-            ,year_103data,year_104data,year_105data,year_106data
-            ,year_107data,year_108data,year_109data,year_110data)
-sobj.doc<-str_replace_all(sobj.doc, "[\r\n]" , "")
+#=========================================雲端讀取完後從這裡執行
+data.doc<-c(data99,data100,data101,data102,data103
+            ,data104,data105,data106,data107
+            ,data108,data109,data110)
 
 content<-list()
 for (i in 1:12){
-  content[[i]]=cc[sobj.doc[[i]]]
+  content[[i]]=cc[data.doc[[i]]]
 }
 
 
@@ -310,17 +296,4 @@ png("./圖片檔/學術期刊/field.png",width = 850,height = 600,res = 90,bg = 
 print(fieldmatrix.plot)
 dev.off()
 
-#=============================standardize
-
-standardize<-function(matrix){
-  m<-max(matrix)
-  n<-min(matrix)
-  for(i in 1:nrow(matrix)){
-    for(j in 1:ncol(matrix)){
-      matrix[i,j] <- (matrix[i,j]-n)/(m-n)
-    }
-  }
-  return(matrix)
-}
-stadar.age<-standardize(soc.age)
 
